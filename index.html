@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primate Evolution Simulator</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar glass-panel">
+            <div class="logo-area">
+                <h1>🦍 EvoSim</h1>
+                <p>Primate Evolution</p>
+            </div>
+
+            <div class="controls-scroll">
+                <div class="control-group">
+                    <h3>Scenarios</h3>
+                    <div class="scenario-buttons">
+                        <button class="btn-scenario" data-scenario="visual-predation">Visual Predation</button>
+                        <button class="btn-scenario" data-scenario="savanna">Woodland</button>
+                        <button class="btn-scenario" data-scenario="predator">Predator</button>
+                        <button class="btn-scenario active" data-scenario="free">Free Play</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Environment</h3>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Insect Population</label>
+                            <span id="insectVal">50%</span>
+                        </div>
+                        <input type="range" id="insectPop" min="0" max="100" value="50">
+                        <p class="tooltip">High insects favor depth perception.</p>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Fruit Availability</label>
+                            <span id="fruitVal">50%</span>
+                        </div>
+                        <input type="range" id="fruitPop" min="0" max="100" value="50">
+                        <p class="tooltip">Fruits provide easy energy.</p>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Predator Presence</label>
+                            <span id="predatorVal">30%</span>
+                        </div>
+                        <input type="range" id="predatorPop" min="0" max="100" value="30">
+                        <p class="tooltip">Predators select for intelligence.</p>
+                    </div>
+
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Tree Density</label>
+                            <span id="treeVal">60%</span>
+                        </div>
+                        <input type="range" id="treeDensity" min="0" max="100" value="60">
+                        <p class="tooltip">Low trees favor bipedalism.</p>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Simulation</h3>
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Initial Population</label>
+                            <span id="popVal">20</span>
+                        </div>
+                        <input type="range" id="initPop" min="5" max="200" value="20">
+                    </div>
+                    <div class="slider-container">
+                        <div class="slider-header">
+                            <label>Simulation Speed</label>
+                            <span id="speedVal">2x</span>
+                        </div>
+                        <input type="range" id="simSpeed" min="1" max="100" value="2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="startBtn" class="btn-primary">
+                    <span class="icon">▶</span> Start
+                </button>
+                <button id="resetBtn" class="btn-secondary">
+                    <span class="icon">↺</span> Reset
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-view">
+            <!-- Top Stats Bar -->
+            <div class="stats-bar glass-panel">
+                <div class="stat-item">
+                    <span class="label">Time Elapsed</span>
+                    <span class="value" id="genCounter">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Population</span>
+                    <span class="value" id="popStat">0</span>
+                </div>
+                <div class="stat-item highlight">
+                    <span class="label">Dominant Trait</span>
+                    <span class="value" id="domTrait">None</span>
+                </div>
+            </div>
+
+            <!-- Simulation Canvas -->
+            <canvas id="simulationCanvas"></canvas>
+
+            <!-- Trait Analysis Panel -->
+            <div class="trait-panel glass-panel">
+                <h3>Average Population Traits</h3>
+                <div class="trait-meter">
+                    <div class="trait-info">
+                        <span>🧠 Intelligence</span>
+                        <span id="val-intel">0.0</span>
+                    </div>
+                    <div class="meter-bg">
+                        <div id="meter-intel" class="meter-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="trait-meter">
+                    <div class="trait-info">
+                        <span>👁️ Depth Perception</span>
+                        <span id="val-depth">0.0</span>
+                    </div>
+                    <div class="meter-bg">
+                        <div id="meter-depth" class="meter-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="trait-meter">
+                    <div class="trait-info">
+                        <span>🦵 Bipedalism</span>
+                        <span id="val-speed">0.0</span>
+                    </div>
+                    <div class="meter-bg">
+                        <div id="meter-speed" class="meter-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/simulation.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

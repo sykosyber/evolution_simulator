@@ -24,5 +24,3 @@ The project visualizes core anthropological concepts:
 2.  Open `index.html` in any modern web browser.
 3.  Select a scenario from the sidebar to start the simulation.
 
-## License
-Created for educational purposes. 

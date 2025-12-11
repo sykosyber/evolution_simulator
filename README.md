@@ -1,7 +1,7 @@
 # Primate Evolution Simulator 🦍
 
-**Course**: Biological Anthropology
-**Type**: Final Project
+*Biological Anthropology*
+
 
 ## Overview
 This interactive web simulation demonstrates how environmental pressures drive evolutionary adaptations in primate populations. By manipulating variables such as tree density, predator count, and food availability, users can observe natural selection in real-time.
